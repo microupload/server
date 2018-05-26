@@ -1,5 +1,5 @@
 import { Route } from '@yellow-snow/core';
-import { HttpController, HttpRoute } from '@yellow-snow/http';
+import { HttpRoute } from '@yellow-snow/http';
 
 // controllers
 
