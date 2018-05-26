@@ -10,7 +10,7 @@ branches:
     - develop
 
 before_script:
-  - npm install -g tsc
+  - npm install -g typescript@2.7.2
   - cd functions
   - npm install
 
