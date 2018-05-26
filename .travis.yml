@@ -10,6 +10,7 @@ branches:
     - develop
 
 before_script:
+  - npm install -g tsc
   - cd functions
   - npm install
 
