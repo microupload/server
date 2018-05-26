@@ -17,6 +17,9 @@ script:
   - npm run lint
   - npm run build
 
+before_deploy:
+  - cd ../
+
 deploy:
   provider: firebase
   token:
