@@ -11,4 +11,4 @@ const http = express();
 
 new HttpRouter(routes).init(http);
 
-export const app = functions.https.onRequest(http);
+export const api = functions.https.onRequest(http);
