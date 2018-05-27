@@ -10,5 +10,6 @@ import { FileController } from './controllers/file.controller';
 
 export const routes: Route<any>[] = [
     new HttpRoute("/ping","all",PingController,"ping"),
-    new HttpRoute("/upload","post",FileController,"upload")
+    new HttpRoute("/upload","post",FileController,"upload"),
+    new HttpRoute("/download/:id","get",FileController,"download")
 ];
