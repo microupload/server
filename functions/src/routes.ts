@@ -1,8 +1,5 @@
 import { Route } from '@yellow-snow/core';
 import { HttpRoute } from '@yellow-snow/http';
-import * as multer from "multer";
-
-const upload = multer();
 
 // controllers
 

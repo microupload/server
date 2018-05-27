@@ -15,7 +15,7 @@ export class FileController extends HttpController {
         return new Promise(
             (resolve, reject) => {
                 try {
-                    let upload: Buffer = new Buffer(0);
+                    let upload: Buffer = Buffer.alloc(0);
                     let stream: NodeJS.ReadableStream;
                     let metadata: FileMetadata;
                     const busboy = new Busboy({ headers: this.req.headers });
