@@ -1,7 +1,14 @@
-import * as firebase from "firebase-admin"
+import { Firebase } from "../models/firebase";
+import { Resolve } from "tsnode-di";
+import * as firebase from "firebase-admin";
 
 export class FileService {
-    private storage = firebase.initializeApp().storage();
+    @Resolve(Firebase)
+    private firebase: Firebase;
+    private storage: firebase.storage.Storage;
+    constructor() {
+        this.storage = this.firebase.app.storage();
+    }
     public async save(filename: string, file: Buffer) {
         return new Promise(
             (resolve, reject) => {
