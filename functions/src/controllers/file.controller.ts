@@ -89,4 +89,15 @@ export class FileController extends HttpController {
             this.res.send();
         }
     }
+    public async getFileMetadata() {
+        try {
+            const id = this.req.params.id;
+            const metadata: FileMetadata = await this.fileMetadataService.getFileMetadata(id);
+            this.res.send(metadata);
+        } catch(e) {
+            console.log(e);
+            this.res.status(500);
+            this.res.send();
+        }
+    }
 }
