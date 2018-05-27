@@ -4,6 +4,7 @@ import { FileService } from '../service/file.service';
 import { Resolve } from "tsnode-di";
 import * as crypto from "crypto";
 import * as Busboy from "busboy";
+import { FileMetadataService } from '../service/file-metadata.service';
 // import * as os from "os";
 // import * as path from "path";
 // import * as fs from "fs";
@@ -11,6 +12,8 @@ import * as Busboy from "busboy";
 export class FileController extends HttpController {
     @Resolve(FileService)
     private fileService!: FileService;
+    @Resolve(FileMetadataService)
+    private fileMetadataService!: FileMetadataService;
     public async upload() {
         return new Promise(
             (resolve, reject) => {
@@ -51,6 +54,7 @@ export class FileController extends HttpController {
                             this.res.send();
                         } else {
                             try {
+                                await this.fileMetadataService.save(metadata);
                                 await this.fileService.save(id, upload);
                                 this.res.send(metadata);
                             } catch(e) {
