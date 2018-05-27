@@ -74,3 +74,15 @@ export class FileController extends HttpController {
             }
         );
     }
+    public async download() {
+        try {
+            const id = this.req.params.id;
+            const buffer: Buffer = await this.fileService.getFile(id);
+            this.res.send(buffer);
+        } catch(e) {
+            console.log(e);
+            this.res.status(500);
+            this.res.send();
+        }
+    }
+}
