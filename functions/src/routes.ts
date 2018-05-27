@@ -4,9 +4,12 @@ import { HttpRoute } from '@yellow-snow/http';
 // controllers
 
 import { PingController } from './controllers/ping.controller';
+import { FileController } from './controllers/file.controller';
 
 // routes
 
 export const routes: Route<any>[] = [
-    new HttpRoute("/ping","all",PingController,"ping")
+    new HttpRoute("/ping","all",PingController,"ping"),
+    new HttpRoute("/upload","post",FileController,"upload"),
+    new HttpRoute("/download/:id","get",FileController,"download")
 ];
