@@ -41,7 +41,6 @@ export class FileController extends HttpController {
                         });
                     });
                     busboy.on('finish', async () => {
-                        console.log("busboy finished");
                         if (upload === undefined) {
                             console.log("No file uploaded");
                             this.res.status(500);
@@ -51,8 +50,14 @@ export class FileController extends HttpController {
                             this.res.status(500);
                             this.res.send();
                         } else {
-                            await this.fileService.save(id, upload);
-                            this.res.send(metadata);
+                            try {
+                                await this.fileService.save(id, upload);
+                                this.res.send(metadata);
+                            } catch(e) {
+                                console.log(e);
+                                this.res.status(500);
+                                this.res.send();
+                            }
                         }
                     });
                     if ((<any>this.req).rawBody) {
@@ -69,4 +74,3 @@ export class FileController extends HttpController {
             }
         );
     }
-}
