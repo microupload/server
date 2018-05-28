@@ -29,21 +29,17 @@ export class FileController extends HttpController {
                     });
                     busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
                         stream = file;
-                        metadata = {
-                            id,
-                            filename,
-                            encoding,
-                            mimetype,
-                            size: -1.
-                        };
                         stream.on("data", (data) => {
                             upload = Buffer.concat([upload, data]);
                         });
                         stream.on("end", () => {
-                            metadata.size = upload.length;
+                            //
                         });
                     });
                     busboy.on('finish', async () => {
+                        metadata = <FileMetadata>fields;
+                        metadata.id = id;
+                        console.log(metadata);
                         if (upload === undefined) {
                             console.log("No file uploaded");
                             this.res.status(500);

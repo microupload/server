@@ -1,7 +1,8 @@
 export interface FileMetadata {
     id: string;
+    iv: string;
+    key: string;
     filename: string;
-    encoding: string;
     mimetype: string;
     size: number;
 }
